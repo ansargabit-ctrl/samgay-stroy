@@ -8,7 +8,7 @@ export const translations = {
       about: 'About',
       team: 'Team',
       contact: 'Contact',
-      getQuote: 'Get a Quote',
+      getQuote: 'Request a quote',
       licensed: 'Category II · Licensed',
     },
     // Hero
@@ -18,8 +18,8 @@ export const translations = {
       title2: 'WHAT',
       title3: 'ENDURES',
       description: 'A 100% Kazakhstan construction company with 100+ employees, its own production base, and a Category II license for all construction and installation works since 2009.',
-      servicesBtn: 'Our Services',
-      projectsBtn: 'View Projects',
+      servicesBtn: 'Our services',
+      projectsBtn: 'View projects',
       statFounded: 'Founded',
       statEmployees: 'Employees',
       statLicense: 'License Cat.',
@@ -27,21 +27,21 @@ export const translations = {
     },
     // Sections
     sections: {
-      licensedWork: 'Licensed Work Sections',
-      sixCategories: 'Six Licensed Service Categories',
+      licensedWork: 'Licensed work',
+      sixCategories: 'Six licensed service categories',
       sixCategoriesDesc: 'All covered under our Category II construction license — spanning engineering networks, roads, structures, pipelines, and industrial infrastructure.',
       fullScope: 'Full License Scope',
       portfolio: 'Portfolio',
-      selectedProjects: 'Selected Projects',
-      allProjects: 'All Projects',
-      safetyFirst: 'Safety First',
-      hseTitle: 'HSE Commitment',
+      selectedProjects: 'Selected projects',
+      allProjects: 'All projects',
+      safetyFirst: 'Safety',
+      hseTitle: 'Health, safety and environment',
       hseDesc: 'Health, Safety and Environment are non-negotiable on every project we deliver.',
-      clientExp: 'Client Experience',
-      trustedBy: 'Trusted By Industry Leaders',
-      readyToBuild: 'Ready to Build?',
+      clientExp: 'Clients',
+      trustedBy: 'Trusted by industry leaders',
+      readyToBuild: 'Ready to build?',
       readyDesc: 'Send your project specs, site location and schedule. We respond within 48 hours.',
-      getInTouch: 'Get In Touch',
+      getInTouch: 'Get in touch',
       licenseActive: 'License active',
       keyClients: 'Key clients',
       moreClients: 'more',
@@ -144,7 +144,7 @@ export const translations = {
     },
     // Projects page
     projects: {
-      hero: 'BUILT BY SAMGAU',
+      hero: 'Built by Samgau',
       heroSub: 'Ten major industrial & engineering projects. Hydrometallurgical complex, industrial gas plants, pipeline networks, drilling rigs, and mechanical overhauls across Kazakhstan.',
       chronicle: 'Project Chronicle',
       stories: 'Projects',
@@ -155,7 +155,7 @@ export const translations = {
       galleryTitle: 'Site Operations & Equipment Photo Gallery',
       gallerySubtitle: 'Every photo from our active construction sites, drilling rigs, and industrial overhauls.',
       photoCount: '20 Field Photos',
-      filterAll: 'All Projects',
+      filterAll: 'All projects',
       moreProjects: 'More Projects Underway',
       yourNext: 'Your Project Could Be Next',
       yourNextDesc: 'We deliver licensed Category II construction and installation works across Kazakhstan. Send your scope and we\'ll respond within 48 hours.',
@@ -204,7 +204,7 @@ export const translations = {
       timeline: 'Company Timeline',
       officialDoc: 'Official Document',
       licenseRecord: 'License Record',
-      clients: 'Client Experience',
+      clients: 'Clients',
       clientsTitle: 'Key Industry Clients',
       timelineData: [
         { label: 'Company Founded in Aktobe', desc: 'TOO Samgau Stroy-Group established as a 100% Kazakhstan-local construction company. Category II license first issued 13.10.2009.' },
@@ -254,7 +254,7 @@ export const translations = {
     },
     // Contact page
     contact: {
-      getInTouch: 'Get In Touch',
+      getInTouch: 'Get in touch',
       title: 'Start Your Project',
       desc: 'Send project specifications, site location and requirements. We review scope against licensed categories and respond with next steps.',
       reachUs: 'Reach Us Directly',
@@ -340,7 +340,7 @@ export const translations = {
     hero: {
       tagline: 'Казахстан · Лицензия II категории',
       title1: 'МЫ СТРОИМ',
-      title2: 'ТО ЧТО',
+      title2: 'ТО, ЧТО',
       title3: 'СТОИТ',
       description: '100% казахстанская строительная компания со штатом более 100 человек, собственной производственной базой и лицензией II категории на все строительно-монтажные работы с 2009 года.',
       servicesBtn: 'Наши услуги',
@@ -453,7 +453,7 @@ export const translations = {
     },
     // Projects
     projects: {
-      hero: 'ПОСТРОЕНО САМГАУ',
+      hero: 'Построено Самгау',
       heroSub: 'Десять крупных промышленных и инженерных объектов. Гидрометаллургический комбинат, установки промышленных газов, трубопроводные сети, буровые комплексы, капитальный ремонт — по всему Казахстану.',
       chronicle: 'Хроника проектов',
       stories: 'Объектов',
@@ -760,7 +760,7 @@ export const translations = {
     },
     // Projects
     projects: {
-      hero: 'САМҒАУ САЛҒАН НЫСАНДАР',
+      hero: 'Самғау салған нысандар',
       heroSub: 'Он ірі өнеркәсіптік және инженерлік нысандар. Гидрометаллургиялық кешен, өнеркәсіптік газ қондырғылары, құбыр желілері, бұрғылау кешендері.',
       chronicle: 'Жобалар жылнамасы',
       stories: 'Нысандар',

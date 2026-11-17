@@ -61,14 +61,14 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
   };
 
   return (
-    <div className={`w-full ${compact ? '' : 'p-6 md:p-10 rounded-3xl bg-[#0f1218] border border-white/10 shadow-2xl'}`}>
+    <div className={`w-full ${compact ? '' : 'p-6 md:p-10 rounded-3xl bg-[#121c30] border border-white/10 shadow-2xl'}`}>
       {!compact && (
         <div className="mb-8 text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--ember)]/10 border border-[var(--ember)]/30 text-[var(--ember)] text-xs font-mono font-bold tracking-widest uppercase mb-3">
             <Sparkles size={14} />
             <span>{lang === 'ru' ? 'Интерактивный Калькулятор' : lang === 'kk' ? 'Интерактивті Калькулятор' : 'Interactive Estimator'}</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-white" style={{ fontFamily: 'Oswald, sans-serif' }}>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-white" style={{ fontFamily: 'inherit' }}>
             {lang === 'ru' ? 'Расчитайте ориентировочный объем и стоимость' : lang === 'kk' ? 'Құны мен көлемін есептеңіз' : 'Estimate Project Scope & Investment'}
           </h2>
           <p className="text-zinc-400 text-sm mt-2">
@@ -97,7 +97,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
           <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
             <CheckCircle2 size={36} />
           </div>
-          <h3 className="text-2xl font-bold text-white font-display" style={{ fontFamily: 'Oswald, sans-serif' }}>
+          <h3 className="text-2xl font-bold text-white font-display" style={{ fontFamily: 'inherit' }}>
             {lang === 'ru' ? 'Заявка Успешно Отправлена!' : lang === 'kk' ? 'Өтінім Сәтті Жіберілді!' : 'Proposal Request Submitted!'}
           </h3>
           <p className="text-zinc-400 text-sm max-w-md mx-auto">
@@ -127,7 +127,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                       className={`p-4 rounded-2xl text-left border transition-all flex items-start gap-3.5 group ${
                         isSelected
                           ? 'bg-[var(--ember)]/15 border-[var(--ember)] text-white shadow-lg shadow-[var(--ember-glow)]/20'
-                          : 'bg-zinc-900/60 border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-800/60'
+                          : 'bg-[#1a2740]/60 border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-800/60'
                       }`}
                     >
                       <div
@@ -166,7 +166,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
               </h3>
 
               {/* Area Slider */}
-              <div className="space-y-3 bg-zinc-900/60 p-5 rounded-2xl border border-zinc-800">
+              <div className="space-y-3 bg-[#1a2740]/60 p-5 rounded-2xl border border-zinc-800">
                 <div className="flex justify-between items-center text-xs font-mono">
                   <span className="text-zinc-400">{lang === 'ru' ? 'Площадь / Длина трассы' : lang === 'kk' ? 'Аумағы / Ұзындығы' : 'Area / Route Distance'}</span>
                   <span className="text-[var(--ember)] font-bold text-base">{area.toLocaleString()} m² / m</span>
@@ -202,7 +202,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                       type="button"
                       onClick={() => setLocation(loc.id)}
                       className={`px-3 py-2 rounded-xl text-xs font-mono text-center border transition-all ${
-                        location === loc.id ? 'bg-[var(--ember)] border-[var(--ember)] text-white' : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
+                        location === loc.id ? 'bg-[var(--ember)] border-[var(--ember)] text-white' : 'bg-[#1a2740] border-zinc-800 text-zinc-400 hover:text-white'
                       }`}
                     >
                       {loc.label}
@@ -219,7 +219,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                     type="button"
                     onClick={() => setUrgency('standard')}
                     className={`px-4 py-2.5 rounded-xl text-xs font-mono border transition-all ${
-                      urgency === 'standard' ? 'bg-zinc-800 border-[var(--ember)] text-white' : 'bg-zinc-900/60 border-zinc-800 text-zinc-400'
+                      urgency === 'standard' ? 'bg-zinc-800 border-[var(--ember)] text-white' : 'bg-[#1a2740]/60 border-zinc-800 text-zinc-400'
                     }`}
                   >
                     {lang === 'ru' ? 'Стандартный график' : lang === 'kk' ? 'Стандартты кесте' : 'Standard Schedule'}
@@ -228,7 +228,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                     type="button"
                     onClick={() => setUrgency('urgent')}
                     className={`px-4 py-2.5 rounded-xl text-xs font-mono border transition-all ${
-                      urgency === 'urgent' ? 'bg-[var(--ember)]/20 border-[var(--ember)] text-white' : 'bg-zinc-900/60 border-zinc-800 text-zinc-400'
+                      urgency === 'urgent' ? 'bg-[var(--ember)]/20 border-[var(--ember)] text-white' : 'bg-[#1a2740]/60 border-zinc-800 text-zinc-400'
                     }`}
                   >
                     ⚡ {lang === 'ru' ? 'Ускоренный (24/7 смена)' : lang === 'kk' ? 'Жедел (24/7 ауысым)' : 'Accelerated (24/7 shifts)'}
@@ -264,7 +264,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                 <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
                   {lang === 'ru' ? 'Подготовка Предложения' : lang === 'kk' ? 'Ұсыныс дайындалуда' : 'Scope Review Ready'}
                 </div>
-                <div className="text-xl md:text-2xl font-bold font-display text-white" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                <div className="text-xl md:text-2xl font-bold font-display text-white" style={{ fontFamily: 'inherit' }}>
                   {lang === 'ru' ? 'Оставьте контактные данные для официального КП' : lang === 'kk' ? 'Ресми КП үшін контакт ақпаратын қалдырыңыз' : 'Share your details to receive the formal commercial offer'}
                 </div>
                 <div className="text-[11px] font-mono text-zinc-400 mt-2">
@@ -284,7 +284,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                     placeholder={lang === 'ru' ? 'Ваше Имя / Организация' : lang === 'kk' ? 'Атыңыз / Ұйым' : 'Your Name / Company'}
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[var(--ember)]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#1a2740] border border-zinc-800 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[var(--ember)]"
                   />
                   <input
                     type="tel"
@@ -292,7 +292,7 @@ export default function ProjectEstimator({ compact = false, onComplete }: Projec
                     placeholder={lang === 'ru' ? '+7 (700) 000-00-00' : lang === 'kk' ? '+7 (700) 000-00-00' : '+7 (700) 000-00-00'}
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[var(--ember)]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#1a2740] border border-zinc-800 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[var(--ember)]"
                   />
                 </div>
 

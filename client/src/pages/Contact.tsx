@@ -70,7 +70,7 @@ export default function Contact() {
       {/* Hero */}
       <section
         className="relative overflow-hidden px-4 pt-28 pb-16 sm:pt-32 sm:pb-20 md:px-8 md:pt-40 md:pb-24"
-        style={{ background: 'linear-gradient(160deg, #0d0d0d 0%, #1a1a1a 60%, #0f1a2e 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #121c30 0%, #1a2740 60%, #0f1a2e 100%)' }}
       >
         <div className="absolute inset-0 grid-texture-dark" />
         <ParticleField count={20} dark />

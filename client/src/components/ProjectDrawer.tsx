@@ -45,10 +45,10 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-            className="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-[#0c0e12] border-l border-white/10 text-zinc-100 z-[9600] flex flex-col shadow-2xl overflow-hidden"
+            className="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-[#121c30] border-l border-white/10 text-zinc-100 z-[9600] flex flex-col shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="p-6 border-b border-white/10 flex items-center justify-between bg-zinc-950/80 backdrop-blur-md shrink-0">
+            <div className="p-6 border-b border-white/10 flex items-center justify-between bg-[#1a2740]/80 backdrop-blur-md shrink-0">
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-[var(--ember)] tracking-widest uppercase">
                 <ShieldCheck size={14} />
                 <span>{project.category}</span>
@@ -66,16 +66,16 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
               {/* Photo Banner */}
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                 <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121c30] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h2 className="text-2xl font-bold font-display text-white" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                  <h2 className="text-2xl font-bold font-display text-white" style={{ fontFamily: 'inherit' }}>
                     {project.title}
                   </h2>
                 </div>
               </div>
 
               {/* Quick Meta Grid */}
-              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs font-mono">
+              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-[#1a2740]/80 border border-zinc-800 text-xs font-mono">
                 <div className="space-y-1">
                   <div className="text-zinc-500 flex items-center gap-1.5">
                     <Building2 size={13} className="text-[var(--ember)]" />
@@ -106,7 +106,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                 <h3 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
                   {lang === 'ru' ? 'Описание Объекта' : lang === 'kk' ? 'Нысанның сипаттамасы' : 'Project Scope & Overview'}
                 </h3>
-                <p className="text-sm text-zinc-300 leading-relaxed bg-zinc-900/40 p-4 rounded-xl border border-zinc-800/80">
+                <p className="text-sm text-zinc-300 leading-relaxed bg-[#1a2740]/40 p-4 rounded-xl border border-zinc-800/80">
                   {project.details}
                 </p>
               </div>
@@ -126,7 +126,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                       'Автокраны Liebherr 50t',
                     ]
                   ).map((eq, i) => (
-                    <div key={i} className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300 flex items-center gap-2">
+                    <div key={i} className="p-2.5 rounded-lg bg-[#1a2740] border border-zinc-800 text-xs font-mono text-zinc-300 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--ember)]" />
                       <span>{eq}</span>
                     </div>
@@ -136,7 +136,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
             </div>
 
             {/* Footer Actions */}
-            <div className="p-6 border-t border-white/10 bg-zinc-950 flex items-center justify-between shrink-0">
+            <div className="p-6 border-t border-white/10 bg-[#1a2740] flex items-center justify-between shrink-0">
               <Link href={`/projects/${project.id}`}>
                 <a
                   onClick={onClose}

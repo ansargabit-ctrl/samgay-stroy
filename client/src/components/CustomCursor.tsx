@@ -63,8 +63,8 @@ export default function CustomCursor() {
           width: isHovered ? 48 : 32,
           height: isHovered ? 48 : 32,
           scale: isHovered ? 1.15 : 1,
-          backgroundColor: isHovered ? 'rgba(224, 58, 0, 0.08)' : 'transparent',
-          borderColor: isHovered ? 'var(--ember)' : 'rgba(224, 58, 0, 0.5)',
+          backgroundColor: isHovered ? 'rgba(180,70,42, 0.08)' : 'transparent',
+          borderColor: isHovered ? 'var(--ember)' : 'rgba(180,70,42, 0.5)',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 350, mass: 0.2 }}
       >

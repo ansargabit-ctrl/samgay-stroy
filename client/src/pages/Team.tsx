@@ -1,191 +1,58 @@
-import { motion, type Variants } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ParticleField from '@/components/ParticleField';
-import { Briefcase, HardHat, Users } from 'lucide-react';
+import { SSG_PHOTO_TEAM_SITE } from '@/data/presentationContent';
 import { useLang } from '@/context/LanguageContext';
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.55, delay: i * 0.08 },
-  }),
-};
-
-const team = [
-  {
-    name: 'G. Zh. Tazhiev',
-    role: 'General Director',
-    expertise: 'Licensed works oversight and client strategy',
-    department: 'EXECUTIVE',
-    initials: 'GT',
-  },
-  {
-    name: 'A. K. Nurgaliyev',
-    role: 'Chief Engineer',
-    expertise: 'Structural engineering and utility systems design',
-    department: 'ENGINEERING',
-    initials: 'AN',
-  },
-  {
-    name: 'B. M. Orazov',
-    role: 'Operations Manager',
-    expertise: 'Site sequencing, resource allocation and delivery',
-    department: 'OPERATIONS',
-    initials: 'BO',
-  },
-  {
-    name: 'D. S. Bekbayev',
-    role: 'Lead Surveyor',
-    expertise: 'Ground works, geotechnical control and measurement',
-    department: 'SURVEY',
-    initials: 'DB',
-  },
-];
-
-const departments = [
-  { icon: Briefcase, name: 'Executive & Administration', headcount: '5+' },
-  { icon: HardHat, name: 'Construction & Site Works', headcount: '60+' },
-  { icon: Users, name: 'Production & Fabrication', headcount: '30+' },
-];
+const HEADCOUNTS = ['5+', '60+', '30+'];
 
 export default function Team() {
   const { t } = useLang();
 
-  // Combine static logic (initials, icons, headcount) with translated strings
-  const translatedTeam = t.team.members.map((m, i) => ({
-    ...m,
-    initials: ['GT', 'AN', 'BO', 'DB'][i],
-  }));
-
-  const translatedDepts = t.team.departments.map((d, i) => ({
-    ...d,
-    icon: [Briefcase, HardHat, Users][i],
-    headcount: ['5+', '60+', '30+'][i],
-  }));
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--sand)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--paper)' }}>
       <Header />
 
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden px-4 pt-28 pb-16 sm:pt-32 sm:pb-20 md:px-8 md:pt-40 md:pb-24"
-        style={{ background: 'linear-gradient(160deg, #0d0d0d 0%, #1a1a1a 60%, #0f1a2e 100%)' }}
-      >
-        <div className="absolute inset-0 grid-texture-dark" />
-        <ParticleField count={20} dark />
-        <div className="relative mx-auto max-w-7xl">
-          <motion.div variants={fadeUp} initial="hidden" animate="visible">
-            <div className="kicker" style={{ color: 'var(--ember)' }}>{t.team.ourPeople}</div>
-            <h1 className="text-4xl font-bold mb-5 sm:text-5xl md:text-6xl" style={{ color: 'var(--sand)' }}>
-              {t.team.title}
-            </h1>
-            <p className="text-lg max-w-2xl" style={{ color: 'rgba(247,243,234,0.65)' }}>
-              {t.team.desc}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Team cards */}
-      <section className="px-4 py-16 md:px-8 md:py-20" style={{ backgroundColor: 'var(--sand)' }}>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {translatedTeam.map((member, i) => (
-              <motion.article
-                key={member.name}
-                variants={fadeUp} initial="hidden" whileInView="visible"
-                viewport={{ once: true }} custom={i * 0.5}
-                className="group rounded-xl overflow-hidden"
-                style={{
-                  background: '#fff',
-                  border: '1px solid rgba(13,13,13,0.08)',
-                  boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
-                }}
-                id={`team-${member.name.toLowerCase().replace(/\s|\./g, '-')}`}
-              >
-                {/* Avatar */}
-                <div
-                  className="flex items-center justify-center pt-10 pb-6 relative overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, var(--charcoal) 0%, var(--steel) 100%)' }}
-                >
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
-                      backgroundSize: '20px 20px',
-                    }}
-                  />
-                  <div
-                    className="relative w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      fontFamily: 'Oswald, sans-serif',
-                      background: 'var(--ember)',
-                      color: 'var(--sand)',
-                      boxShadow: '0 8px 30px var(--ember-glow)',
-                    }}
-                  >
-                    {member.initials}
-                  </div>
-                  <div
-                    className="absolute bottom-3 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded font-mono text-[9px] tracking-widest"
-                    style={{ background: 'rgba(224,58,0,0.2)', color: 'var(--ember)', border: '1px solid rgba(224,58,0,0.3)' }}
-                  >
-                    {member.department}
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold mb-1" style={{ color: 'var(--charcoal)' }}>
-                    {member.name}
-                  </h3>
-                  <div className="font-mono text-xs font-semibold mb-3" style={{ color: 'var(--ember)' }}>
-                    {member.role}
-                  </div>
-                  <p className="text-xs leading-relaxed" style={{ color: 'var(--ink-60)' }}>
-                    {member.expertise}
-                  </p>
-                </div>
-              </motion.article>
-            ))}
+      {/* ═══ HEADING ═══ */}
+      <section style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="shell pt-14 pb-12 md:pt-20 md:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+          <div className="lg:col-span-7">
+            <p className="kicker">{t.team.ourPeople}</p>
+            <h1 className="text-5xl md:text-7xl">{t.team.title}</h1>
           </div>
+          <p className="lg:col-span-5 text-lg leading-relaxed" style={{ color: 'var(--muted-ink)' }}>{t.team.desc}</p>
         </div>
       </section>
 
-      {/* Departments & headcount */}
-      <section className="px-4 py-16 md:px-8" style={{ backgroundColor: 'var(--sand-dark)' }}>
-        <div className="mx-auto max-w-7xl">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-10">
-            <div className="kicker">{t.team.org}</div>
-            <h2 className="text-3xl font-bold" style={{ color: 'var(--charcoal)' }}>{t.team.orgTitle}</h2>
-          </motion.div>
+      {/* ═══ LEADERSHIP ═══ */}
+      <section className="pb-20 md:pb-28">
+        <ul className="shell grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {t.team.members.map((m) => (
+            <li key={m.name} className="pt-5" style={{ borderTop: '3px solid var(--asphalt)' }}>
+              <p className="text-sm font-semibold" style={{ color: 'var(--rust)' }}>{m.role}</p>
+              <h2 className="mt-1 text-2xl">{m.name}</h2>
+              <p className="mt-3 leading-relaxed" style={{ color: 'var(--muted-ink)' }}>{m.expertise}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {translatedDepts.map((dept, i) => (
-              <motion.div
-                key={dept.name}
-                variants={fadeUp} initial="hidden" whileInView="visible"
-                viewport={{ once: true }} custom={i * 0.4}
-                className="rounded-xl p-6 flex items-center gap-4"
-                style={{ background: '#fff', border: '1px solid rgba(13,13,13,0.08)' }}
-              >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ background: 'var(--ember)', boxShadow: '0 4px 16px var(--ember-glow)' }}
-                >
-                  <dept.icon size={22} style={{ color: 'var(--sand)' }} />
+      {/* ═══ ORGANISATION ═══ */}
+      <section style={{ background: 'var(--navy)', color: '#fff' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="px-[clamp(1rem,4vw,2.5rem)] py-20 md:py-24 lg:pr-16 lg:pl-[max(2.5rem,calc((100vw-1240px)/2+2.5rem))]">
+            <p className="kicker" style={{ color: '#e8a48f' }}>{t.team.org}</p>
+            <h2 className="text-4xl md:text-5xl">{t.team.orgTitle}</h2>
+            <dl className="ruled-dark mt-10">
+              {t.team.departments.map((d, i) => (
+                <div key={d.name} className="flex items-baseline justify-between gap-6 py-5" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+                  <dt className="text-lg" style={{ color: 'rgba(255,255,255,0.85)' }}>{d.name}</dt>
+                  <dd className="text-3xl font-bold">{HEADCOUNTS[i]}</dd>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold mb-0.5" style={{ fontFamily: 'Oswald, sans-serif', color: 'var(--ember)' }}>
-                    {dept.headcount}
-                  </div>
-                  <div className="text-sm font-semibold" style={{ color: 'var(--charcoal)' }}>{dept.name}</div>
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </dl>
+          </div>
+          <div className="relative min-h-[320px]">
+            <img src={SSG_PHOTO_TEAM_SITE} alt="Samgau engineers on site" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
       </section>

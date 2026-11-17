@@ -42,7 +42,7 @@ export default function QuickDock() {
           className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9000] px-2 py-1.5 rounded-2xl flex items-center justify-center gap-1.5 backdrop-blur-xl border border-white/10 shadow-2xl max-w-[calc(100vw-0.75rem)] whitespace-nowrap overflow-hidden sm:rounded-full sm:px-4 sm:py-2.5 sm:gap-3"
           style={{
             background: 'rgba(15, 17, 21, 0.82)',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(224, 58, 0, 0.15)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(180,70,42, 0.15)',
           }}
         >
           {/* Quick Call */}
@@ -86,7 +86,7 @@ export default function QuickDock() {
             </button>
 
             {langMenuOpen && (
-              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#12151c] border border-white/10 rounded-xl p-1 shadow-xl flex flex-col gap-1 min-w-[70px]">
+              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#121c30] border border-white/10 rounded-xl p-1 shadow-xl flex flex-col gap-1 min-w-[70px]">
                 {languages.map((l) => (
                   <button
                     key={l.code}

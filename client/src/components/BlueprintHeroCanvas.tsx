@@ -122,7 +122,7 @@ export default function BlueprintHeroCanvas() {
       }
 
       // Draw Grid Lines (Blueprint Floor)
-      ctx.strokeStyle = 'rgba(224, 58, 0, 0.08)';
+      ctx.strokeStyle = 'rgba(180,70,42, 0.08)';
       ctx.lineWidth = 1;
       const gridSize = 40;
       const gridCount = 20;
@@ -136,7 +136,7 @@ export default function BlueprintHeroCanvas() {
       }
 
       // Draw 3D Edges
-      ctx.strokeStyle = 'rgba(224, 58, 0, 0.55)';
+      ctx.strokeStyle = 'rgba(180,70,42, 0.55)';
       ctx.lineWidth = 1.5;
 
       for (let i = 0; i < edges.length; i++) {
@@ -144,7 +144,7 @@ export default function BlueprintHeroCanvas() {
         const p2 = projectedNodes[edges[i][1]];
 
         const grad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-        grad.addColorStop(0, 'rgba(224, 58, 0, 0.7)');
+        grad.addColorStop(0, 'rgba(180,70,42, 0.7)');
         grad.addColorStop(1, 'rgba(30, 58, 95, 0.5)');
 
         ctx.strokeStyle = grad;
@@ -163,7 +163,7 @@ export default function BlueprintHeroCanvas() {
         ctx.fill();
 
         // Glowing pulse on nodes
-        ctx.fillStyle = 'rgba(224, 58, 0, 0.4)';
+        ctx.fillStyle = 'rgba(180,70,42, 0.4)';
         ctx.beginPath();
         ctx.arc(p.x, p.y, 6 * p.scale, 0, Math.PI * 2);
         ctx.fill();

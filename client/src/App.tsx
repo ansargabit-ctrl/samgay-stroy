@@ -13,7 +13,6 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import CustomCursor from "./components/CustomCursor";
 import QuickDock from "./components/QuickDock";
 
 function Router() {
@@ -41,7 +40,6 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <LanguageSplash />
-            <CustomCursor />
             <QuickDock />
             <Router />
           </TooltipProvider>

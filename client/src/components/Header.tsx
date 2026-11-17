@@ -1,19 +1,44 @@
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useLang } from '@/context/LanguageContext';
 import type { Lang } from '@/data/translations';
 
 const SSG_LOGO = '/pptx-media/image4.png';
 
+const LANGS: { code: Lang; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'ru', label: 'RU' },
+];
+
+function LangSwitch() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="flex items-center text-sm" role="group" aria-label="Language">
+      {LANGS.map((l, i) => (
+        <span key={l.code} className="flex items-center">
+          {i > 0 && <span className="px-1.5" style={{ color: 'var(--line)' }}>/</span>}
+          <button
+            onClick={() => setLang(l.code)}
+            aria-pressed={lang === l.code}
+            className="font-semibold transition-colors"
+            style={{ color: lang === l.code ? 'var(--asphalt)' : 'var(--muted-ink)' }}
+          >
+            {l.label}
+          </button>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
-  const { lang, setLang, t } = useLang();
+  const { t } = useLang();
 
   const navItems = [
-    { label: t.nav.home,     href: '/' },
     { label: t.nav.services, href: '/services' },
     { label: t.nav.projects, href: '/projects' },
     { label: t.nav.about,    href: '/about' },
@@ -22,86 +47,31 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50" style={{ background: 'var(--charcoal)' }}>
-      {/* Top announcement strip */}
-      <div
-        className="hidden md:flex items-center justify-between px-8 py-1.5"
-        style={{ background: '#111', borderBottom: '1px solid rgba(247,243,234,0.06)' }}
-      >
-        <span className="font-mono text-[10px] tracking-widest" style={{ color: 'rgba(247,243,234,0.4)' }}>
-          TOO «SAMGAU STROY-GROUP» · BIN 090340019007 · ASTANA · AKTOBE · SHYMKENT
-        </span>
-        <div className="flex items-center gap-6">
-          <span className="font-mono text-[10px] tracking-widest" style={{ color: 'var(--ember)' }}>
-            15-GSL №001485-1 · {t.nav.licensed}
-          </span>
-          
-          {/* Language Switcher Desktop */}
-          <div className="flex items-center gap-2 border-l pl-4" style={{ borderColor: 'rgba(247,243,234,0.1)' }}>
-            <Globe size={10} style={{ color: 'rgba(247,243,234,0.4)' }} />
-            <div className="flex items-center gap-2 font-mono text-[10px]">
-              <button 
-                onClick={() => setLang('en')}
-                className="transition-colors uppercase tracking-widest"
-                style={{ color: lang === 'en' ? 'var(--ember)' : 'rgba(247,243,234,0.3)' }}
-              >
-                EN
-              </button>
-              <span style={{ color: 'rgba(247,243,234,0.15)' }}>/</span>
-              <button 
-                onClick={() => setLang('ru')}
-                className="transition-colors uppercase tracking-widest"
-                style={{ color: lang === 'ru' ? 'var(--ember)' : 'rgba(247,243,234,0.3)' }}
-              >
-                RU
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main nav bar */}
-      <div
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8"
-        style={{ borderBottom: '1px solid rgba(247,243,234,0.07)' }}
-      >
-        {/* Logo — show the icon mark only at small size, full logo hidden on mobile */}
-        <Link href="/">
-          <a id="header-logo" className="flex items-center shrink-0 group" aria-label="Samgau Stroy Group home">
-            <img
-              src={SSG_LOGO}
-              alt="Samgau Stroy Group"
-              className="block object-contain"
-              style={{ height: '28px', width: 'auto', maxWidth: '126px' }}
-            />
+    <header
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{ background: 'rgba(245,245,242,0.94)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--line)' }}
+    >
+      <div className="shell flex items-center justify-between" style={{ height: 'var(--header-h)' }}>
+        <Link asChild href="/">
+          <a id="header-logo" className="flex items-center shrink-0" aria-label="Samgau Stroy Group home">
+            <img src={SSG_LOGO} alt="Samgau Stroy Group" style={{ height: 34, width: 'auto', mixBlendMode: 'multiply' }} />
           </a>
         </Link>
 
-        {/* Desktop navigation */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
           {navItems.map((item) => {
-            const isActive = location === item.href;
+            const isActive = location === item.href || location.startsWith(item.href + '/');
             return (
-              <Link key={item.href} href={item.href}>
+              <Link asChild key={item.href} href={item.href}>
                 <a
-                  id={`nav-${item.href.replace('/', '') || 'home'}`}
-                  className="relative px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
-                  style={{ color: isActive ? 'var(--ember)' : 'rgba(247,243,234,0.65)' }}
+                  id={`nav-${item.href.replace('/', '')}`}
+                  aria-current={isActive ? 'page' : undefined}
+                  className="relative py-1 text-[0.95rem] font-medium transition-colors hover:text-[var(--rust)]"
+                  style={{ color: isActive ? 'var(--rust)' : 'var(--asphalt)' }}
                 >
+                  {item.label}
                   {isActive && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded"
-                      style={{ background: 'rgba(224,58,0,0.12)' }}
-                      transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                  {isActive && (
-                    <span
-                      className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full"
-                      style={{ background: 'var(--ember)' }}
-                    />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px]" style={{ background: 'var(--rust)' }} />
                   )}
                 </a>
               </Link>
@@ -109,102 +79,63 @@ export default function Header() {
           })}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link href="/contact">
-            <a id="header-cta" className="btn btn-primary py-2 px-5 text-xs">
-              {t.nav.getQuote} <ArrowRight size={12} />
+        <div className="hidden md:flex items-center gap-6">
+          <LangSwitch />
+          <Link asChild href="/contact">
+            <a id="header-cta" className="btn btn-primary" style={{ minHeight: '2.5rem', padding: '0.5rem 1.1rem' }}>
+              {t.nav.getQuote}
             </a>
           </Link>
         </div>
 
-        {/* Mobile controls */}
-        <div className="flex items-center gap-3 md:hidden">
-          {/* Mobile language toggle */}
-          <div className="flex items-center gap-1 font-mono text-[10px]">
-            <button 
-              onClick={() => setLang('en')}
-              className="px-1.5 py-1 rounded transition-colors uppercase tracking-widest"
-              style={{ 
-                background: lang === 'en' ? 'rgba(224,58,0,0.15)' : 'transparent',
-                color: lang === 'en' ? 'var(--ember)' : 'rgba(247,243,234,0.4)' 
-              }}
-            >
-              EN
-            </button>
-            <button 
-              onClick={() => setLang('ru')}
-              className="px-1.5 py-1 rounded transition-colors uppercase tracking-widest"
-              style={{ 
-                background: lang === 'ru' ? 'rgba(224,58,0,0.15)' : 'transparent',
-                color: lang === 'ru' ? 'var(--ember)' : 'rgba(247,243,234,0.4)' 
-              }}
-            >
-              RU
-            </button>
-          </div>
-
+        <div className="flex items-center gap-4 md:hidden">
+          <LangSwitch />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-center w-9 h-9 rounded transition-colors"
-            style={{
-              color: 'rgba(247,243,234,0.8)',
-              background: isOpen ? 'rgba(247,243,234,0.1)' : 'transparent',
-            }}
-            aria-label="Toggle navigation"
+            className="flex items-center justify-center w-10 h-10"
+            style={{ color: 'var(--asphalt)' }}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
             id="mobile-menu-toggle"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
+            exit={{ height: 0 }}
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="overflow-hidden md:hidden"
-            style={{ background: '#111', borderBottom: '1px solid rgba(247,243,234,0.08)' }}
+            style={{ background: 'var(--paper)', borderTop: '1px solid var(--line)' }}
           >
-            <div className="px-4 py-4 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
-              {navItems.map((item, idx) => {
+            <ul className="shell py-3">
+              {navItems.map((item) => {
                 const isActive = location === item.href;
                 return (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.04 }}
-                  >
-                    <Link href={item.href}>
+                  <li key={item.href} style={{ borderBottom: '1px solid var(--line)' }}>
+                    <Link asChild href={item.href}>
                       <a
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between w-full rounded-lg px-4 py-3 font-mono text-sm font-bold uppercase tracking-wider transition-all duration-200"
-                        style={{
-                          color: isActive ? 'var(--sand)' : 'rgba(247,243,234,0.55)',
-                          background: isActive ? 'var(--ember)' : 'transparent',
-                        }}
+                        className="block py-3.5 text-lg font-semibold"
+                        style={{ color: isActive ? 'var(--rust)' : 'var(--asphalt)' }}
                       >
                         {item.label}
-                        {isActive && <ArrowRight size={12} />}
                       </a>
                     </Link>
-                  </motion.div>
+                  </li>
                 );
               })}
-
-              <div className="pt-3 mt-2 border-t" style={{ borderColor: 'rgba(247,243,234,0.08)' }}>
-                <Link href="/contact">
-                  <a onClick={() => setIsOpen(false)} className="btn btn-primary w-full justify-center">
-                    {t.nav.getQuote} <ArrowRight size={13} />
-                  </a>
+              <li className="pt-4 pb-2">
+                <Link asChild href="/contact">
+                  <a onClick={() => setIsOpen(false)} className="btn btn-primary w-full">{t.nav.getQuote}</a>
                 </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </motion.nav>
         )}
       </AnimatePresence>

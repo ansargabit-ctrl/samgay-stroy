@@ -1,203 +1,142 @@
-import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ParticleField from '@/components/ParticleField';
-import {
-  SSG_LOGO, SSG_PHOTO_TEAM_SITE, SSG_PHOTO_DRILLING_DAY,
-  SSG_LICENSE_MAIN, SSG_KZ_ORNAMENT,
-  companyHighlights, keyClients,
-} from '@/data/presentationContent';
-import { licenseFacts } from '@/data/licenseScope';
-import { Award, Building2, MapPin, ShieldCheck, Target, Zap } from 'lucide-react';
+import LicenseModal from '@/components/LicenseModal';
+import { SSG_PHOTO_DRILLING_DAY, SSG_LICENSE_MAIN, keyClients } from '@/data/presentationContent';
 import { useLang } from '@/context/LanguageContext';
-
-const up = (i = 0) => ({
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.09 } },
-});
 
 export default function About() {
   const { t } = useLang();
 
-  const timeline = [
-    { year: '2009', label: t.about.timelineData?.[0]?.label ?? 'Company Founded & First License', desc: t.about.timelineData?.[0]?.desc ?? 'TOO Samgau Stroy-Group established as a 100% Kazakhstan-local construction company. Category II license first issued 13.10.2009.' },
-    { year: '2021', label: t.about.timelineData?.[1]?.label ?? 'Bozoy Compressor Pipeline', desc: t.about.timelineData?.[1]?.desc ?? 'Delivered water pipeline works for the reconstruction of the Bozoy compressor station for TOO DO KNISG.' },
-    { year: '2022', label: t.about.timelineData?.[2]?.label ?? 'Multi-Client Expansion', desc: t.about.timelineData?.[2]?.desc ?? 'Completed five concurrent projects for KMK Munay, KazTransGas Aimak, Radzha LTD, and Aktobe city Akimat.' },
-    { year: '2024', label: t.about.timelineData?.[3]?.label ?? 'License Renewed · Aktobe TPP', desc: t.about.timelineData?.[3]?.desc ?? 'License reissued 26.03.2024 as 15-GSL №001485-1 (Category II). Completed chemical water treatment building overhaul at Aktobe TPP.' },
+  const facts = [
+    { title: t.about.cat2, desc: t.about.cat2Desc },
+    { title: t.about.threeLocations, desc: t.about.threeLocationsDesc },
+    { title: t.about.local, desc: t.about.localDesc },
+  ];
+
+  const values = [
+    { title: t.about.precision, desc: t.about.precisionDesc },
+    { title: t.about.responsiveness, desc: t.about.responsivenessDesc },
+    { title: t.about.accountability, desc: t.about.accountabilityDesc },
+  ];
+
+  const timelineData = t.about.timelineData;
+  const timeline = ['2009', '2021', '2022', '2024'].map((year, i) => ({ year, ...timelineData[i] })).filter((e) => e.label);
+
+  const licenseFacts = [
+    { label: t.services.facts.license, value: '15-GSL №001485-1' },
+    { label: t.services.facts.category, value: 'II' },
+    { label: t.services.facts.primaryIssue, value: '13.10.2009' },
+    { label: t.services.facts.issued, value: '26.03.2024' },
+    { label: t.services.facts.bin, value: '090340019007' },
+    { label: t.services.facts.regOffice, value: t.services.facts.regOfficeVal },
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--sand)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--paper)' }}>
       <Header />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-28 pb-16 sm:pt-32 sm:pb-20 md:px-8 md:pt-40 md:pb-28"
-        style={{ background: 'linear-gradient(155deg, #080808 0%, #141414 50%, #0b1628 100%)' }}>
-        <div className="absolute inset-0 grid-texture-dark" />
-        <ParticleField count={22} dark />
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block opacity-25">
-          <img src={SSG_PHOTO_TEAM_SITE} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, #080808 30%, transparent 70%)' }} />
-        </div>
-        <div className="relative mx-auto max-w-7xl">
-          <motion.div variants={up()} initial="hidden" animate="visible" className="max-w-3xl">
-            <img src={SSG_LOGO} alt="SSG" className="h-10 mb-6 brightness-0 invert opacity-70" />
-            <div className="kicker" style={{ color: 'var(--ember)' }}>{t.about.ourStory}</div>
-            <h1 className="text-5xl font-bold mb-5 sm:text-6xl md:text-7xl" style={{ color: 'var(--sand)' }}>
-              {t.about.title.split(' ').slice(0, 2).join(' ')}<br />
-              {t.about.title.split(' ').slice(2).join(' ')}
-            </h1>
-            <p className="text-lg" style={{ color: 'rgba(247,243,234,0.6)' }}>
-              {t.about.desc}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Core facts */}
-      <section className="px-4 py-16 md:px-8 md:py-20" style={{ backgroundColor: 'var(--sand)' }}>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-            {[
-              { icon: Award, title: t.about.cat2, desc: t.about.cat2Desc },
-              { icon: MapPin, title: t.about.threeLocations, desc: t.about.threeLocationsDesc },
-              { icon: Building2, title: t.about.local, desc: t.about.localDesc },
-            ].map((card, i) => (
-              <motion.div key={card.title} variants={up(i * 0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="rounded-2xl p-8" style={{ background: '#fff', border: '1px solid rgba(13,13,13,0.08)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                  style={{ background: 'var(--ember)', boxShadow: '0 4px 20px var(--ember-glow)' }}>
-                  <card.icon size={22} style={{ color: 'var(--sand)' }} />
-                </div>
-                <h2 className="text-xl font-bold mb-3" style={{ color: 'var(--charcoal)' }}>{card.title}</h2>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-60)' }}>{card.desc}</p>
-              </motion.div>
-            ))}
+      {/* ═══ HEADING ═══ */}
+      <section style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="shell pt-14 pb-12 md:pt-20 md:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+          <div className="lg:col-span-7">
+            <p className="kicker">{t.about.ourStory}</p>
+            <h1 className="text-5xl md:text-7xl">{t.about.title}</h1>
           </div>
+          <p className="lg:col-span-5 text-lg leading-relaxed" style={{ color: 'var(--muted-ink)' }}>{t.about.desc}</p>
         </div>
       </section>
 
-      {/* Split: Photo + Values */}
-      <section className="px-4 py-16 md:px-8 md:py-20" style={{ backgroundColor: 'var(--sand-dark)' }}>
-        <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-          {/* Photo side */}
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.7 }}
-            className="relative">
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]" style={{ boxShadow: '0 30px 80px rgba(0,0,0,0.18)' }}>
-              <img src={SSG_PHOTO_DRILLING_DAY} alt="Samgau site operations" className="w-full h-full object-cover object-center" />
+      {/* ═══ FACTS ═══ */}
+      <section className="pb-20 md:pb-24">
+        <div className="shell grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          {facts.map((f) => (
+            <div key={f.title} className="pt-5" style={{ borderTop: '3px solid var(--asphalt)' }}>
+              <h2 className="text-2xl">{f.title}</h2>
+              <p className="mt-3 leading-relaxed" style={{ color: 'var(--muted-ink)' }}>{f.desc}</p>
             </div>
-            {/* floating badge */}
-            <div className="absolute -bottom-5 -right-5 rounded-2xl p-5 shadow-2xl"
-              style={{ background: 'var(--ember)', boxShadow: '0 16px 50px rgba(224,58,0,0.4)' }}>
-              <div className="font-bold text-4xl" style={{ fontFamily: 'Oswald, sans-serif', color: 'var(--sand)' }}>2009</div>
-              <div className="font-mono text-xs mt-1" style={{ color: 'rgba(247,243,234,0.75)' }}>FOUNDED</div>
-            </div>
-            {/* KZ ornament decoration */}
-            <div className="absolute -top-6 -left-6 w-24 h-24 opacity-20">
-              <img src={SSG_KZ_ORNAMENT} alt="" className="w-full h-full object-contain" />
-            </div>
-          </motion.div>
+          ))}
+        </div>
+      </section>
 
-          {/* Values */}
-          <motion.div variants={up()} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="kicker">{t.about.values}</div>
-            <h2 className="text-4xl font-bold mb-8" style={{ color: 'var(--charcoal)' }}>{t.about.whatDrives}</h2>
-            <div className="space-y-4">
-              {[
-                { icon: Target, title: t.about.precision, desc: t.about.precisionDesc },
-                { icon: Zap, title: t.about.responsiveness, desc: t.about.responsivenessDesc },
-                { icon: ShieldCheck, title: t.about.accountability, desc: t.about.accountabilityDesc },
-              ].map((val, i) => (
-                <motion.div key={val.title} variants={up(i * 0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                  className="flex items-start gap-4 rounded-xl p-5"
-                  style={{ background: '#fff', border: '1px solid rgba(13,13,13,0.08)' }}>
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ background: 'var(--ember-subtle)', border: '1.5px solid var(--ember)' }}>
-                    <val.icon size={18} style={{ color: 'var(--ember)' }} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-1" style={{ color: 'var(--charcoal)' }}>{val.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-60)' }}>{val.desc}</p>
-                  </div>
-                </motion.div>
+      {/* ═══ PHOTO + VALUES ═══ */}
+      <section style={{ background: 'var(--navy)', color: '#fff' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative min-h-[320px]">
+            <img src={SSG_PHOTO_DRILLING_DAY} alt="Samgau crew at a drilling site" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div className="px-[clamp(1rem,4vw,2.5rem)] py-20 md:py-24 lg:pl-16 lg:pr-[max(2.5rem,calc((100vw-1240px)/2+2.5rem))]">
+            <p className="kicker" style={{ color: '#e8a48f' }}>{t.about.values}</p>
+            <h2 className="text-4xl md:text-5xl">{t.about.whatDrives}</h2>
+            <ul className="ruled-dark mt-10">
+              {values.map((v) => (
+                <li key={v.title} className="py-5">
+                  <h3 className="text-xl">{v.title}</h3>
+                  <p className="mt-1.5 leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>{v.desc}</p>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="px-4 py-16 md:px-8 md:py-20" style={{ backgroundColor: 'var(--sand)' }}>
-        <div className="mx-auto max-w-5xl">
-          <motion.div variants={up()} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-12">
-            <div className="kicker">{t.about.history}</div>
-            <h2 className="text-4xl font-bold" style={{ color: 'var(--charcoal)' }}>{t.about.timeline}</h2>
-          </motion.div>
-          <div className="space-y-8">
-            {timeline.map((item, i) => (
-              <motion.div key={i} variants={up(i * 0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="timeline-item pl-8">
-                <div className="font-mono text-xs font-bold mb-1" style={{ color: 'var(--ember)' }}>{item.year}</div>
-                <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--charcoal)' }}>{item.label}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-60)' }}>{item.desc}</p>
-              </motion.div>
+      {/* ═══ TIMELINE ═══ */}
+      <section className="py-20 md:py-28">
+        <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="kicker">{t.about.history}</p>
+            <h2 className="text-4xl md:text-5xl">{t.about.timeline}</h2>
+          </div>
+          <ol className="lg:col-span-8 ruled">
+            {timeline.map((e) => (
+              <li key={e.year} className="py-7 grid grid-cols-[5rem_1fr] md:grid-cols-[7rem_1fr] gap-4">
+                <span className="text-2xl md:text-3xl font-bold" style={{ color: 'var(--rust)' }}>{e.year}</span>
+                <div>
+                  <h3 className="text-xl md:text-2xl">{e.label}</h3>
+                  <p className="mt-2 leading-relaxed max-w-[62ch]" style={{ color: 'var(--muted-ink)' }}>{e.desc}</p>
+                </div>
+              </li>
             ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ═══ LICENSE ═══ */}
+      <section className="py-20 md:py-24" style={{ background: 'var(--concrete)' }}>
+        <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="lg:col-span-7">
+            <p className="kicker">{t.about.officialDoc}</p>
+            <h2 className="text-4xl md:text-5xl">{t.about.licenseRecord}</h2>
+            <dl className="mt-8" style={{ borderTop: '1px solid var(--line)' }}>
+              {licenseFacts.map((f) => (
+                <div key={f.label} className="grid grid-cols-[9rem_1fr] gap-4 py-3.5" style={{ borderBottom: '1px solid var(--line)' }}>
+                  <dt style={{ color: 'var(--muted-ink)' }}>{f.label}</dt>
+                  <dd className="font-semibold">{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div className="lg:col-span-5">
+            <LicenseModal>
+              <button className="block w-full max-w-[380px] mx-auto bg-white p-3 transition-transform hover:-translate-y-1" style={{ boxShadow: '0 1px 0 var(--line), 0 16px 40px rgba(23,32,51,0.1)' }} aria-label={t.about.licenseRecord}>
+                <img src={SSG_LICENSE_MAIN} alt="State construction license 15-GSL №001485-1" className="w-full aspect-[3/4] object-contain object-top" />
+              </button>
+            </LicenseModal>
           </div>
         </div>
       </section>
 
-      {/* License doc display */}
-      <section className="px-4 py-16 md:px-8" style={{ background: 'linear-gradient(135deg, var(--charcoal) 0%, var(--steel) 100%)' }}>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <motion.div variants={up()} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <div className="kicker" style={{ color: 'var(--ember)' }}>{t.about.officialDoc}</div>
-              <h2 className="text-4xl font-bold mb-5" style={{ color: 'var(--sand)' }}>{t.about.licenseRecord}</h2>
-              <div className="space-y-4">
-                {[
-                  { label: t.services.facts.license, value: '15-GSL No. 001485-1' },
-                  { label: t.services.facts.issued, value: '26.03.2024' },
-                  { label: t.services.facts.primaryIssue, value: '13.10.2009' },
-                  { label: t.services.facts.category, value: 'II' },
-                  { label: t.services.facts.bin, value: '090340019007' },
-                  { label: t.services.facts.regOffice, value: t.services.facts.regOfficeVal },
-                ].map(({ label, value }) => (
-                  <div key={label} className="flex items-center justify-between py-3 border-b"
-                    style={{ borderColor: 'rgba(247,243,234,0.1)' }}>
-                    <span className="font-mono text-xs uppercase tracking-widest" style={{ color: 'rgba(247,243,234,0.45)' }}>{label}</span>
-                    <span className="font-semibold text-sm" style={{ color: 'rgba(247,243,234,0.9)' }}>{value}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }} transition={{ duration: 0.7 }}>
-              <div className="rounded-2xl overflow-hidden shadow-2xl"
-                style={{ border: '1px solid rgba(247,243,234,0.1)', maxWidth: 400, margin: '0 auto' }}>
-                <img src={SSG_LICENSE_MAIN} alt="Official Kazakhstan construction license" className="w-full h-auto object-contain bg-white" />
-              </div>
-            </motion.div>
+      {/* ═══ CLIENTS ═══ */}
+      <section className="py-20 md:py-24">
+        <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="kicker">{t.about.clients}</p>
+            <h2 className="text-4xl md:text-5xl">{t.about.clientsTitle}</h2>
           </div>
-        </div>
-      </section>
-
-      {/* Clients */}
-      <section className="px-4 py-16 md:px-8" style={{ backgroundColor: 'var(--sand-dark)' }}>
-        <div className="mx-auto max-w-7xl">
-          <motion.div variants={up()} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-10">
-            <div className="kicker">{t.about.clients}</div>
-            <h2 className="text-3xl font-bold" style={{ color: 'var(--charcoal)' }}>{t.about.clientsTitle}</h2>
-          </motion.div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-            {keyClients.map((client, i) => (
-              <motion.div key={client} variants={up(i * 0.06)} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="rounded-xl px-4 py-5 text-center font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default"
-                style={{ background: '#fff', border: '1px solid rgba(13,13,13,0.1)', color: 'var(--charcoal)' }}>
-                {client}
-              </motion.div>
+          <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+            {keyClients.map((client) => (
+              <li key={client} className="py-3.5 text-lg font-medium" style={{ borderTop: '1px solid var(--line)' }}>{client}</li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

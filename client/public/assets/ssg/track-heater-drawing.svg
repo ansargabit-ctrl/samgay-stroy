@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Schematic drawing of a PP-0.63 track heater on a skid">
+  <rect width="1200" height="800" fill="#1a2740"/>
+  <g stroke="#ffffff" stroke-opacity="0.06" stroke-width="1">
+    <path d="M0 100H1200M0 200H1200M0 300H1200M0 400H1200M0 500H1200M0 600H1200M0 700H1200"/>
+    <path d="M100 0V800M200 0V800M300 0V800M400 0V800M500 0V800M600 0V800M700 0V800M800 0V800M900 0V800M1000 0V800M1100 0V800"/>
+  </g>
+  <g fill="none" stroke="#e8e9e4" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- skid / sled runners -->
+    <path d="M180 590H1020"/>
+    <path d="M150 620H1050"/>
+    <path d="M150 620Q130 620 128 600L140 590"/>
+    <path d="M1050 620Q1070 620 1072 600L1060 590"/>
+    <path d="M260 590V620M420 590V620M580 590V620M740 590V620M900 590V620"/>
+    <!-- saddles -->
+    <path d="M300 590L330 520H430L460 590"/>
+    <path d="M740 590L770 520H870L900 590"/>
+    <!-- horizontal heater shell -->
+    <rect x="240" y="330" width="720" height="200" rx="100"/>
+    <path d="M330 330V530M870 330V530"/>
+    <!-- coil inlet/outlet nozzles -->
+    <path d="M420 330V280H400M420 280H440"/>
+    <path d="M540 330V280H520M540 280H560"/>
+    <!-- firebox burner end -->
+    <circle cx="240" cy="430" r="44"/>
+    <path d="M196 430H150V470H120"/>
+    <!-- stack -->
+    <path d="M800 330V150H850V330"/>
+    <path d="M790 150H860"/>
+    <path d="M806 120L825 98L844 120"/>
+    <!-- ladder -->
+    <path d="M900 330V560M930 330V560"/>
+    <path d="M900 370H930M900 410H930M900 450H930M900 490H930M900 530H930"/>
+  </g>
+  <!-- coil hint inside shell -->
+  <path d="M360 400H840M360 430H840M360 460H840" fill="none" stroke="#b4462a" stroke-width="4" stroke-dasharray="14 10"/>
+  <text x="180" y="720" fill="#e8e9e4" fill-opacity="0.75" font-family="Golos Text, Arial, sans-serif" font-size="30" font-weight="600">PP-0.63</text>
+</svg>
