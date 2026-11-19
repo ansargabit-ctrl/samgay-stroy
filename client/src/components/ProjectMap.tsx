@@ -16,8 +16,6 @@ const SITES: { key: SiteKey; en: string; ru: string; ids: string[]; officeEn?: s
     officeEn: 'Registered office', officeRu: 'Юридический адрес',
   },
   { key: 'pavlodar', en: 'Pavlodar', ru: 'Павлодар', labelSide: 'left', ids: ['SSG.2023-HPU', 'SSG.2024-EHMK'] },
-  { key: 'astana', en: 'Astana', ru: 'Астана', labelSide: 'left', ids: [], officeEn: 'Operations office', officeRu: 'Операционный офис' },
-  { key: 'shymkent', en: 'Shymkent', ru: 'Шымкент', labelSide: 'right', ids: [], officeEn: 'Production base', officeRu: 'Производственная база' },
 ];
 
 const copy = {
