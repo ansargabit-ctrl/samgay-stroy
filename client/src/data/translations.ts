@@ -145,7 +145,7 @@ export const translations = {
     // Projects page
     projects: {
       hero: 'Built by Samgau',
-      heroSub: 'Ten major industrial & engineering projects. Hydrometallurgical complex, industrial gas plants, pipeline networks, drilling rigs, and mechanical overhauls across Kazakhstan.',
+      heroSub: 'Nine major industrial & engineering projects. Hydrometallurgical complex, a hydrogen production unit, pipeline networks, drilling rigs, and mechanical overhauls across Kazakhstan.',
       chronicle: 'Project Chronicle',
       stories: 'Projects',
       scrollExplore: 'Scroll to explore',
@@ -168,6 +168,8 @@ export const translations = {
       scopeTitle: 'Key Scope of Work',
       techSpecsTitle: 'Technical Specifications',
       photoGalleryTitle: 'Project Photo Gallery',
+      videosTitle: 'Site Videos',
+      videosSubtitle: 'Footage recorded on site by our crews.',
       backToProjects: 'Back to Projects',
       nextProject: 'Next Project',
       prevProject: 'Previous Project',
@@ -454,7 +456,7 @@ export const translations = {
     // Projects
     projects: {
       hero: 'Построено Самгау',
-      heroSub: 'Десять крупных промышленных и инженерных объектов. Гидрометаллургический комбинат, установки промышленных газов, трубопроводные сети, буровые комплексы, капитальный ремонт — по всему Казахстану.',
+      heroSub: 'Девять крупных промышленных и инженерных объектов. Гидрометаллургический комбинат, установка производства водорода, трубопроводные сети, буровые комплексы, капитальный ремонт — по всему Казахстану.',
       chronicle: 'Хроника проектов',
       stories: 'Объектов',
       scrollExplore: 'Прокрутите для просмотра',
@@ -477,6 +479,8 @@ export const translations = {
       scopeTitle: 'Выполненные работы',
       techSpecsTitle: 'Технические характеристики',
       photoGalleryTitle: 'Фотогалерея объекта',
+      videosTitle: 'Видео с объекта',
+      videosSubtitle: 'Съёмка наших бригад прямо на строительной площадке.',
       backToProjects: 'Назад к проектам',
       nextProject: 'Следующий проект',
       prevProject: 'Предыдущий проект',
@@ -761,7 +765,7 @@ export const translations = {
     // Projects
     projects: {
       hero: 'Самғау салған нысандар',
-      heroSub: 'Он ірі өнеркәсіптік және инженерлік нысандар. Гидрометаллургиялық кешен, өнеркәсіптік газ қондырғылары, құбыр желілері, бұрғылау кешендері.',
+      heroSub: 'Тоғыз ірі өнеркәсіптік және инженерлік нысандар. Гидрометаллургиялық кешен, сутегі өндіру қондырғысы, құбыр желілері, бұрғылау кешендері.',
       chronicle: 'Жобалар жылнамасы',
       stories: 'Нысандар',
       scrollExplore: 'Қарау үшін айналдырыңыз',
@@ -784,6 +788,8 @@ export const translations = {
       scopeTitle: 'Орындалған жұмыстар',
       techSpecsTitle: 'Техникалық сипаттамалар',
       photoGalleryTitle: 'Нысанның фотогалереясы',
+      videosTitle: 'Нысаннан бейнежазбалар',
+      videosSubtitle: 'Біздің бригадалар құрылыс алаңында түсірген бейнелер.',
       backToProjects: 'Жобаларға қайта оралу',
       nextProject: 'Келесі жоба',
       prevProject: 'Алдыңғы жоба',

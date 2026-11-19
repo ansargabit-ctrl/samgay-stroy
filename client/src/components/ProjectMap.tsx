@@ -15,8 +15,7 @@ const SITES: { key: SiteKey; en: string; ru: string; ids: string[]; officeEn?: s
     ids: ['SSG.2023-WDC', 'SSG.2024-TPP', 'SSG.2022-KTGA', 'SSG.2022-AKIMAT', 'SSG.2022-RADZHA', 'SSG.2022-KMK', 'SSG.2021-BOZOY'],
     officeEn: 'Registered office', officeRu: 'Юридический адрес',
   },
-  { key: 'pavlodar', en: 'Pavlodar', ru: 'Павлодар', labelSide: 'left', ids: ['SSG.2023-AIRLIQUIDE', 'SSG.2023-MIMAS'] },
-  { key: 'ridder', en: 'East Kazakhstan', ru: 'Восточный Казахстан', labelSide: 'left', ids: ['SSG.2024-EHMK'] },
+  { key: 'pavlodar', en: 'Pavlodar', ru: 'Павлодар', labelSide: 'left', ids: ['SSG.2023-HPU', 'SSG.2024-EHMK'] },
   { key: 'astana', en: 'Astana', ru: 'Астана', labelSide: 'left', ids: [], officeEn: 'Operations office', officeRu: 'Операционный офис' },
   { key: 'shymkent', en: 'Shymkent', ru: 'Шымкент', labelSide: 'right', ids: [], officeEn: 'Production base', officeRu: 'Производственная база' },
 ];
@@ -25,14 +24,14 @@ const copy = {
   en: {
     kicker: 'Geography',
     title: 'Where we have built',
-    lead: 'Projects across Kazakhstan, from the Aktobe oil and gas region to the Pavlodar refinery and East Kazakhstan. Select a location to see the work there.',
+    lead: 'Projects across Kazakhstan, from the Aktobe oil and gas region to the Pavlodar industrial sites. Select a location to see the work there.',
     projects: (n: number) => (n === 1 ? '1 project' : `${n} projects`),
     noProjects: 'Company base. Crews and equipment are dispatched to sites from here.',
   },
   ru: {
     kicker: 'География',
     title: 'Где мы строили',
-    lead: 'Объекты по всему Казахстану: от нефтегазового Актюбинского региона до Павлодарского НПЗ и Восточного Казахстана. Выберите точку, чтобы увидеть проекты.',
+    lead: 'Объекты по всему Казахстану: от нефтегазового Актюбинского региона до промышленных площадок Павлодара. Выберите точку, чтобы увидеть проекты.',
     projects: (n: number) => `${n} ${n === 1 ? 'проект' : n < 5 ? 'проекта' : 'проектов'}`,
     noProjects: 'База компании. Отсюда бригады и техника направляются на объекты.',
   },

@@ -1,10 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type SyntheticEvent } from 'react';
 import { useRoute, Link } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { presentationProjects, ProjectData, getLocalizedProject } from '@/data/presentationContent';
 import { useLang } from '@/context/LanguageContext';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, X } from 'lucide-react';
+
+// Only one site video plays at a time
+const pauseOtherVideos = (e: SyntheticEvent<HTMLVideoElement>) => {
+  document.querySelectorAll<HTMLVideoElement>('video[data-site-video]').forEach((v) => {
+    if (v !== e.currentTarget) v.pause();
+  });
+};
 
 export default function ProjectDetail() {
   const [, params] = useRoute('/projects/:id');
@@ -20,6 +27,7 @@ export default function ProjectDetail() {
   const nextProject = getLocalizedProject(presentationProjects[(currentIndex + 1) % n], lang);
   const categoryLabel = t.projects.categories[project.category as keyof typeof t.projects.categories] || project.category;
   const gallery = project.gallery;
+  const videos = rawProject.videos ?? [];
 
   // Reset the viewer when moving between projects
   useEffect(() => {
@@ -129,6 +137,38 @@ export default function ProjectDetail() {
           )}
         </div>
       </section>
+
+      {/* ═══ VIDEOS ═══ */}
+      {videos.length > 0 && (
+        <section className="pb-16 md:pb-20">
+          <div className="shell">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+              <div>
+                <p className="kicker">{videos.length} · {t.projects.videosTitle}</p>
+                <h2 className="text-3xl md:text-4xl">{t.projects.videosTitle}</h2>
+              </div>
+              <p className="text-[1.05rem]" style={{ color: 'var(--muted-ink)' }}>{t.projects.videosSubtitle}</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {videos.map((v, i) => (
+                <div key={v.src} className="relative overflow-hidden aspect-[9/16]" style={{ background: 'var(--navy-deep)' }}>
+                  <video
+                    data-site-video
+                    src={v.src}
+                    poster={v.poster}
+                    controls
+                    playsInline
+                    preload="none"
+                    onPlay={pauseOtherVideos}
+                    className="w-full h-full object-contain"
+                    aria-label={`${project.title}: ${t.projects.videosTitle} ${i + 1} / ${videos.length}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══ SCOPE & SPECS ═══ */}
       <section className="pb-20 md:pb-28">
