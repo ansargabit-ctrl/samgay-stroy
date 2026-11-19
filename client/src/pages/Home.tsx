@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LicenseModal from '@/components/LicenseModal';
 import ProjectMap from '@/components/ProjectMap';
+import Credentials from '@/components/Credentials';
 import {
   SSG_HERO_HELMET,
   COMPANY_CONTACT_EMAIL,
@@ -160,6 +161,8 @@ export default function Home() {
           </ul>
         </div>
       </section>
+
+      <Credentials />
 
       <ProjectMap />
 
